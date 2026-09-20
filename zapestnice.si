@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💖 Naše zapestnice</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #30263a;
+      background: linear-gradient(180deg, #fff7fc, #f7f1ff);
+    }
+
+    header {
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #ff78b8, #9658df);
+    }
+
+    header h1 {
+      font-size: clamp(38px, 9vw, 65px);
+      margin: 0 0 10px;
+    }
+
+    header p {
+      font-size: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 0;
+      border-radius: 14px;
+      padding: 13px 20px;
+      background: #9658df;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      text-align: center;
+      padding: 12px;
+      background: rgba(255,255,255,.95);
+      box-shadow: 0 3px 15px #0001;
+    }
+
+    nav a {
+      display: inline-block;
+      margin: 3px 6px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      color: #7e40b4;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      background: #f5e8ff;
+    }
+
+    section {
+      max-width: 1080px;
+      margin: auto;
+      padding: 45px 18px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #8748c4;
+      font-size: 32px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 18px;
+    }
+
+    .card,
+    .box,
+    .history {
+      background: white;
+      border-radius: 23px;
+      padding: 23px;
+      box-shadow: 0 12px 35px #8e52c522;
+      border: 1px solid #f1dff8;
+    }
+
+    .card {
+      text-align: center;
+      transition: .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      font-size: 44px;
+    }
+
+    .price {
+      font-size: 29px;
+      font-weight: 900;
+      color: #9658df;
+    }
+
+    .box,
+    .history {
+      max-width: 720px;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      border: 2px solid #ead7f3;
+      border-radius: 12px;
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 105px;
+      resize: vertical;
+    }
+
+    .total {
+      margin-top: 18px;
+      padding: 16px;
+      background: #fff0f8;
+      border-radius: 14px;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .success {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 17px;
+      background: #ecfff1;
+      border: 1px solid #b8e8c1;
+    }
+
+    .receipt {
+      margin-top: 14px;
+      padding: 16px;
+      background: #f7f2ff;
+      border-radius: 14px;
+      white-space: pre-wrap;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+
+    .photo {
+      background: white;
+      border-radius: 22px;
+      padding: 10px;
+      box-shadow: 0 12px 35px #8e52c522;
+    }
+
+    .photo svg {
+      width: 100%;
+      height: 220px;
+      display: block;
+      border-radius: 16px;
+    }
+
+    .photo p {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .item {
+      padding: 15px;
+      margin: 11px 0;
+      border-radius: 15px;
+      background: #faf7ff;
+      border: 1px solid #e9dcf3;
+    }
+
+    .muted {
+      color: #777;
+      font-size: 13px;
+    }
+
+    .charity {
+      text-align: center;
+      background: white;
+      padding: 28px;
+      border-radius: 23px;
+      box-shadow: 0 12px 35px #8e52c522;
+    }
+
+    .cross {
+      font-size: 60px;
+      color: #e33;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px;
+      background: #8748c4;
+      color: white;
+    }
+
+    @media(max-width:600px) {
+      nav a {
+        font-size: 13px;
+        margin: 2px;
+      }
+
+      section {
+        padding: 34px 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>💖 Naše zapestnice</h1>
+  <p>Ročno izdelane, pisane in čisto tvoje.</p>
+  <a class="btn" href="#narocilo">🛍️ Naroči zdaj</a>
+</header>
+
+<nav>
+  <a href="#cenik">💎 Cenik</a>
+  <a href="#narocilo">🛍️ Naročilo</a>
+  <a href="#zgodovina">🧾 Zgodovina</a>
+  <a href="#galerija">📸 Fotografije</a>
+  <a href="#dobrodelnost">❤️ Dobrodelnost</a>
+</nav>
+
+<section id="cenik">
+  <h2>💎 Cenik</h2>
+
+  <div class="cards">
+    <div class="card">
+      <div class="icon">🤍</div>
+      <h3>Navadna</h3>
+      <p>Preprosta in lepa.</p>
+      <div class="price">1 €</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🌈</div>
+      <h3>Pisana</h3>
+      <p>Barve po tvojem okusu.</p>
+      <div class="price">2 €</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🔤</div>
+      <h3>Z imenom</h3>
+      <p>Z izbranim imenom.</p>
+      <div class="price">3 €</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">⭐</div>
+      <h3>Z obeskom</h3>
+      <p>Z ljubkim obeskom.</p>
+      <div class="price">4 €</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">✨</div>
+      <h3>Po naročilu</h3>
+      <p>Po tvoji želji.</p>
+      <div class="price">5 €</div>
+    </div>
+  </div>
+</section>
+
+<section id="narocilo">
+  <h2>🛍️ Naroči svojo zapestnico</h2>
+
+  <div class="box">
+
+    <label for="ime">Tvoje ime</label>
+    <input id="ime" placeholder="Npr. Ana">
+
+    <label for="izdelek">Izberi zapestnico</label>
+    <select id="izdelek" onchange="izracunaj()">
+      <option value="1">Navadna – 1 €</option>
+      <option value="2">Pisana – 2 €</option>
+      <option value="3">Z imenom – 3 €</option>
+      <option value="4">Z obeskom – 4 €</option>
+      <option value="5">Po naročilu – 5 €</option>
+    </select>
+
+    <label for="kolicina">Količina</label>
+    <input id="kolicina" type="number" value="1" min="1" max="50"
+           onchange="izracunaj()">
+
+    <label for="podrobnosti">Podrobnosti naročila</label>
+    <textarea id="podrobnosti"
+      placeholder="Barve, ime, obesek ali druge želje..."></textarea>
+
+    <div class="total">
+      Skupaj: <span id="skupaj">1 €</span>
+    </div>
+
+    <button class="btn" onclick="oddajNarocilo()">
+      ✅ Oddaj naročilo
+    </button>
+
+    <div class="success" id="potrditev">
+      <h3>🎉 Vaše naročilo je sprejeto!</h3>
+
+      <p id="cas"></p>
+
+      <div class="receipt" id="racun"></div>
+
+      <button class="btn" onclick="kopiraj()">
+        📋 Kopiraj
+      </button>
+
+      <button class="btn" onclick="window.print()">
+        🖨️ PDF / tisk
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<section id="zgodovina">
+  <h2>🧾 Zgodovina nakupov</h2>
+
+  <div class="history">
+    <p class="muted">
+      Naročila se shranijo samo v tem brskalniku na tej napravi.
+    </p>
+
+    <div id="zgodovinaSeznam"></div>
+
+    <button class="btn" onclick="izbrisiZgodovino()">
+      🗑️ Izbriši zgodovino
+    </button>
+  </div>
+</section>
+
+<section id="galerija">
+  <h2>📸 Fotografije</h2>
+
+  <div class="gallery">
+
+    <div class="photo">
+      <svg viewBox="0 0 400 260">
+        <rect width="400" height="260" fill="#ffdff0"/>
+        <circle cx="200" cy="130" r="78"
+                fill="none" stroke="#ff5ca8" stroke-width="28"/>
+        <circle cx="120" cy="80" r="12" fill="#ffd447"/>
+        <circle cx="280" cy="80" r="12" fill="#8de17b"/>
+        <circle cx="280" cy="180" r="12" fill="#55c7e8"/>
+        <circle cx="120" cy="180" r="12" fill="#9658df"/>
+      </svg>
+      <p>🌈 Pisana zapestnica</p>
+    </div>
+
+    <div class="photo">
+      <svg viewBox="0 0 400 260">
+        <rect width="400" height="260" fill="#f4e9ff"/>
+        <circle cx="200" cy="130" r="78"
+                fill="none" stroke="#9658df" stroke-width="28"/>
+        <text x="200" y="142" text-anchor="middle"
+              font-size="34" font-family="Arial" fill="white">
+          ANA
+        </text>
+      </svg>
+      <p>🔤 Zapestnica z imenom</p>
+    </div>
+
+    <div class="photo">
+      <svg viewBox="0 0 400 260">
+        <rect width="400" height="260" fill="#e5f8ff"/>
+        <circle cx="200" cy="130" r="78"
+                fill="none" stroke="#55c7e8" stroke-width="28"/>
+        <path d="M200 75l13 38 40 1-32 23
+                 10 39-31-23-31 23 10-39-32-23
+                 40-1z"
+              fill="#ffd447"/>
+      </svg>
+      <p>⭐ Zapestnica z obeskom</p>
+    </div>
+
+    <div class="photo">
+      <svg viewBox="0 0 400 260">
+        <rect width="400" height="260" fill="#fff2d8"/>
+        <circle cx="200" cy="130" r="78"
+                fill="none" stroke="#ff9b5e" stroke-width="28"/>
+        <circle cx="150" cy="75" r="12" fill="#ff72b6"/>
+        <circle cx="250" cy="75" r="12" fill="#9658df"/>
+        <circle cx="150" cy="185" r="12" fill="#55c7e8"/>
+        <circle cx="250" cy="185" r="12" fill="#8de17b"/>
+      </svg>
+      <p>✨ Ročno izdelana</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="dobrodelnost">
+  <h2>❤️ Dobrodelnost</h2>
+
+  <div class="charity">
+    <div class="cross">✚</div>
+
+    <h3>Pomagajmo skupaj</h3>
+
+    <p>
+      Del izkupička lahko namenimo dobrodelnosti
+      in ga po dogovoru podarimo Rdečemu križu.
+    </p>
+  </div>
+</section>
+
+<footer>
+  💖 Hvala za podporo našim ročno izdelanim zapestnicam! 💖
+</footer>
+
+<script>
+let cena = 1;
+
+function izracunaj() {
+  cena = Number(document.getElementById("izdelek").value);
+
+  const kolicina =
+    Math.max(1, Number(document.getElementById("kolicina").value) || 1);
+
+  document.getElementById("skupaj").textContent =
+    (cena * kolicina) + " €";
+}
+
+function oddajNarocilo() {
+
+  const ime =
+    document.getElementById("ime").value.trim() || "Ni navedeno";
+
+  const select = document.getElementById("izdelek");
+
+  const izdelek =
+    select.options[select.selectedIndex].text.split(" – ")[0];
+
+  const kolicina =
+    Math.max(1, Number(document.getElementById("kolicina").value) || 1);
+
+  const podrobnosti =
+    document.getElementById("podrobnosti").value.trim() ||
+    "Ni dodatnih želja.";
+
+  const skupaj = cena * kolicina;
+
+  const datum = new Date().toLocaleString("sl-SI");
+
+  const narocilo = {
+    datum: datum,
+    ime: ime,
+    izdelek: izdelek,
+    kolicina: kolicina,
+    podrobnosti: podrobnosti,
+    skupaj: skupaj
+  };
+
+  let zgodovina =
+    JSON.parse(localStorage.getItem("zapestniceZgodovina") || "[]");
+
+  zgodovina.unshift(narocilo);
+
+  localStorage.setItem(
+    "zapestniceZgodovina",
+    JSON.stringify(zgodovina)
+  );
+
+  const tekst =
+`ZAPESTNICE – NAROČILO
+
+Datum: ${datum}
+Ime: ${ime}
+Izdelek: ${izdelek}
+Količina: ${kolicina}
+Podrobnosti: ${podrobnosti}
+Skupaj: ${skupaj} €`;
+
+  document.getElementById("racun").textContent = tekst;
+
+  document.getElementById("cas").textContent =
+    izdelek === "Po naročilu"
+      ? "⏱️ Priprava traja približno 5 minut."
+      : "⏱️ Naročilo bomo pripravili čim prej.";
+
+  document.getElementById("potrditev").style.display = "block";
+
+  prikaziZgodovino();
+
+  document
+    .getElementById("potrditev")
+    .scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+}
+
+function prikaziZgodovino() {
+
+  const seznam =
+    document.getElementById("zgodovinaSeznam");
+
+  const zgodovina =
+    JSON.parse(localStorage.getItem("zapestniceZgodovina") || "[]");
+
+  if (zgodovina.length === 0) {
+    seznam.innerHTML =
+      "<p class='muted'>🧾 Še ni shranjenih nakupov.</p>";
+    return;
+  }
+
+  seznam.innerHTML = zgodovina.map(function(narocilo) {
+
+    return `
+      <div class="item">
+        <strong>🛍️ ${narocilo.izdelek}</strong>
+        — ${narocilo.kolicina} kos
+        — <strong>${narocilo.skupaj} €</strong>
+
+        <br>
+
+        <span class="muted">
+          ${narocilo.datum} · ${narocilo.ime}
+        </span>
+
+        <br>
+
+        ${narocilo.podrobnosti}
+      </div>
+    `;
+
+  }).join("");
+}
+
+function izbrisiZgodovino() {
+
+  if (confirm("Ali res želiš izbrisati vso zgodovino nakupov?")) {
+
+    localStorage.removeItem("zapestniceZgodovina");
+
+    prikaziZgodovino();
+  }
+}
+
+function kopiraj() {
+
+  const tekst =
+    document.getElementById("racun").textContent;
+
+  navigator.clipboard.writeText(tekst)
+    .then(function() {
+      alert("Naročilo je kopirano! 📋");
+    });
+}
+
+izracunaj();
+prikaziZgodovino();
+</script>
+
+</body>
+</html>
